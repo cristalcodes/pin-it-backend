@@ -13,12 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_02_13_003943) do
 
   create_table "pins", force: :cascade do |t|
-    t.string "name"
+    t.string "address"
     t.string "label"
-    t.string "street"
-    t.string "city"
-    t.string "state"
-    t.string "zip"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
