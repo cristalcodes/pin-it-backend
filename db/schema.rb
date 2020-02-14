@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_003943) do
+ActiveRecord::Schema.define(version: 2020_02_14_021555) do
+
+  create_table "memories", force: :cascade do |t|
+    t.date "date"
+    t.text "description"
+    t.integer "pin_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pin_id"], name: "index_memories_on_pin_id"
+  end
 
   create_table "pins", force: :cascade do |t|
     t.string "address"
@@ -21,4 +30,5 @@ ActiveRecord::Schema.define(version: 2020_02_13_003943) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "memories", "pins"
 end
