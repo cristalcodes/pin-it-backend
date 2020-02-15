@@ -10,6 +10,7 @@ class MemoriesController < ApplicationController
 
     def show
       memory = Memory.find(params[:id])
+      render json: memory
     end
 
     def create

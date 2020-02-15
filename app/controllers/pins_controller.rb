@@ -12,7 +12,11 @@ class PinsController < ApplicationController
 
   def show
     pin = Pin.find_by(id: params[:id])
-    render json: pin, except: [:created_at, :updated_at], include: {memories: {except: [:created_at, :updated_at, :pin_id] }}
+    if pin
+      render json: pin, except: [:address, :latitude, :longitude, :created_at, :updated_at], include: {memories: {except: [:created_at, :updated_at, :pin_id] }}
+    else
+      render json: 'Error: The pin you are searching for does not exist.'
+    end
   end
 
   def create
@@ -23,6 +27,12 @@ class PinsController < ApplicationController
       render json: pin.errors.full_messages, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    pin = Pin.find(params[:id])
+    pin.destroy
+  end
+
 
 
 
