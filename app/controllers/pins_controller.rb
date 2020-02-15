@@ -11,7 +11,8 @@ class PinsController < ApplicationController
   end
 
   def show
-    pin = Pin.find(id: params[:id])
+    pin = Pin.find_by(id: params[:id])
+    render json: pin, except: [:created_at, :updated_at], include: {memories: {except: [:created_at, :updated_at, :pin_id] }}
   end
 
   def create
@@ -28,7 +29,7 @@ class PinsController < ApplicationController
   private
 
   def pin_params
-    params.require(:pin).permit(:name, :label, :street, :city, :state, :zip)
+    params.require(:pin).permit(:label, :address)
   end
 
 end

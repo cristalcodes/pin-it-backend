@@ -1,8 +1,8 @@
 class MemoriesController < ApplicationController
   def index
-      memories = Memory.all{"order by created_at DESC"}
-      render json: memories
-    end
+      memories = Memory.order('created_at DESC')
+      render json: memories, except: [:created_at, :updated_at] #include: {pin: {only:[:address]}}
+  end
 
     def new
       memory = Memory.new
@@ -42,6 +42,6 @@ class MemoriesController < ApplicationController
     private
 
     def memory_params
-      params.require(:memory).permit(:date, :description)
+      params.require(:memory).permit(:date, :description, :pin_id)
     end
 end
