@@ -9,8 +9,12 @@ class MemoriesController < ApplicationController
     end
 
     def show
-      memory = Memory.find(params[:id])
-      render json: memory
+      memory = Memory.find_by(id: params[:id])
+      if memory
+        render json: memory
+      else
+        render json: "Error: The memory you are searching for does not exist."
+      end
     end
 
     def create
@@ -23,19 +27,20 @@ class MemoriesController < ApplicationController
     end
 
     def edit
-      memory = Memory.find(id: params[:id])
+      memory = Memory.find(params[:id])
     end
 
     def update
-      memory = Memory.find(id: params[:id])
-      if memory.update(todo_params)
+      memory = Memory.find(params[:id])
+      if memory.update(memory_params)
         render json: memory
       else
         render json: memory.errors, status: :unprocessable_entity
       end
     end
 
-    def delete
+    def destroy
+      memory = Memory.find(params[:id])
       memory.destroy
     end
 
