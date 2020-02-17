@@ -11,7 +11,7 @@ class MemoriesController < ApplicationController
     def show
       memory = Memory.find_by(id: params[:id])
       if memory
-        render json: memory
+        render json: memory, except: [:created_at, :updated_at]
       else
         render json: "Error: The memory you are searching for does not exist."
       end

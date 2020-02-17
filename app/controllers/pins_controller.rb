@@ -1,5 +1,12 @@
 class PinsController < ApplicationController
 
+  def get_ip_coordinates
+    ip_address = request.ip.gsub(/[^0-9,.-]/, "")
+    results = Geocoder.search("#{ip_address}")
+    current_location = results.first.coordinates
+    render json: current_location
+  end
+
   def index
     pins = Pin.order('created_at DESC')
     render json: pins, except: [:created_at, :updated_at]
@@ -7,7 +14,6 @@ class PinsController < ApplicationController
 
   def new
      pin = Pin.new
-     ip.address = request.ip
   end
 
   def show
@@ -37,6 +43,8 @@ class PinsController < ApplicationController
 
 
   private
+
+
 
   def pin_params
     params.require(:pin).permit(:label, :address)
