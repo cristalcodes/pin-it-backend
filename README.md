@@ -8,11 +8,11 @@ Pinster is a location-based memory content management system. Users are able to 
 
 The current repository will provide the backend framework for the application, which is written in Ruby using the Ruby on Rails Framework.
 
+Run `bundle install` to make sure all code and gem dependencies are resolved.
+
 ####You must additionally fork and clone the repository at `https://github.com/cristalcodes/pin-it-frontend-` .
 
 This respository will provide the frontend framework that is necessary for running the application.
-
-Run `bundle install` to make sure all code and gem dependencies are resolved.
 
 Google Maps is a free API, and should not require a key if you are using on your local computer and are making less than one thousand requests to the API per day. If you do, however, need to make 1k+ requests to the API, please obtain a key by visiting `https://developers.google.com/maps/documentation/javascript/get-api-key` and following the instructions.
 
