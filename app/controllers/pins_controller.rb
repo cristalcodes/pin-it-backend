@@ -1,11 +1,12 @@
 class PinsController < ApplicationController
 
-  def get_ip_coordinates
-    ip_address = request.ip.gsub(/[^0-9,.-]/, "")
-    results = Geocoder.search("#{ip_address}")
-    current_location = results.first.coordinates
-    render json: current_location
-  end
+  #for use after deploying online
+  # def get_ip_coordinates
+  #   ip_address = request.ip.gsub(/[^0-9,.-]/, "")
+  #   results = Geocoder.search("#{ip_address}")
+  #   current_location = results.first.coordinates
+  #   render json: current_location
+  # end
 
   def index
     pins = Pin.order('created_at DESC')
