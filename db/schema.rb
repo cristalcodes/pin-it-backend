@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2020_02_14_021555) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "memories", force: :cascade do |t|
     t.date "date"
     t.text "description"
-    t.integer "pin_id"
+    t.bigint "pin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pin_id"], name: "index_memories_on_pin_id"
